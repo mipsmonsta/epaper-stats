@@ -123,6 +123,23 @@ class SysUtils:
         return temp
     
     @staticmethod
+    def get_raspi5_fan_rpm() -> (bool, str):
+        # check if raspberry pi 5
+        model = str(SysUtils.shell_cmd("cat /proc/device-tree/model"))
+
+        if not model.strip().startswith("Raspberry Pi 5"):
+            SysUtils.logger.info(model.strip())
+            return (False, "NA")
+        
+        
+        rpm =  str(SysUtils.shell_cmd("cat /sys/devices/platform/cooling_fan/hwmon/*/fan1_input")).strip()
+        if rpm == "0":
+            return (False, "0")
+
+    
+        return (True, rpm)
+    
+    @staticmethod
     def get_storage_tuple() -> tuple[str]:
         storage =  SysUtils.shell_cmd('df -h | awk \'$NF=="/"{printf "%d,%d,%s", $3,$2,$5}\'')
         storage = storage.split(',')

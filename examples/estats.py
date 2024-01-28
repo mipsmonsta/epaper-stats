@@ -35,6 +35,9 @@ def drawForegroundStats(baseImage: Image, jitter:int = 0) -> Image:
     # temperature
     tempText = utility.SysUtils.get_temp()
     draw.text((xCoord, 90), tempText, font=font20, fill=0)
+    fanOn, rpm = utility.SysUtils.get_raspi5_fan_rpm()
+    if fanOn:
+        draw.text((xCoord, 110), f"Fan On @ {rpm} rpm", font=font10, fill=0)
 
     # mem stats: used, total and utilised
     memStats = utility.SysUtils.get_mem_tuple()
