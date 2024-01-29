@@ -8,10 +8,9 @@ if os.path.exists(libdir):
     sys.path.append(libdir)
 
 import logging
-import epd2in7
+from ..lib.waveshare_epd import epd2in7, utility
 import time
 from PIL import Image,ImageDraw,ImageFont, ImageOps
-import utility
 import traceback
 
 logging.basicConfig(level=logging.DEBUG)

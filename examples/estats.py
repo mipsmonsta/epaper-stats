@@ -11,6 +11,7 @@ import time
 from PIL import Image,ImageDraw,ImageFont, ImageOps
 import utility
 import traceback
+import signal
 
 def drawForegroundStats(baseImage: Image, jitter:int = 0) -> Image:
 
@@ -53,14 +54,23 @@ def drawForegroundStats(baseImage: Image, jitter:int = 0) -> Image:
 
     return baseImage
 
+def signal_handler(sig, frame):
+    epd.init()
+    epd.Clear(0xFF)
+    # show goodbye end screen
+    epd.display(epd.getbuffer(imageEnd))
+
+    epd.sleep()
+
+    logging.info("Terminate signals SIGTERM or SIGINT")
+    sys.exit(0)
+
 def main(): 
 
-    logging.basicConfig(level=logging.INFO)
 
     try:
 
         logging.info("epd2in7 Demo")   
-        epd = epd2in7.EPD()
         isJitter = False
         while True:
 
@@ -96,13 +106,17 @@ def main():
     except IOError as e:
         traceback.print_exc()
         logging.info(e)
-    
-    except KeyboardInterrupt:    
-        logging.info("ctrl + c:")
-        epd2in7.epdconfig.module_exit(cleanup=True)
-        exit()
-    finally:
-        epd.sleep()
+
+
+
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+    epd = epd2in7.EPD()
+    endPath = os.path.join(picdir, 'e_paper_endscreen.png')
+    imageEnd = Image.open(endPath)
+    # register for signals for gracefull shutdown
+    signal.signal(signal.SIGTERM , signal_handler)
+    signal.signal(signal.SIGINT , signal_handler)
+
     main()
