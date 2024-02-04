@@ -13,6 +13,7 @@ import utility
 import traceback
 import signal
 
+
 def drawForegroundStats(baseImage: Image, jitter:int = 0) -> Image:
 
     # ready font
@@ -90,6 +91,12 @@ def main():
 
             # draw foreground stats
             GImage = drawForegroundStats(GImage, jitter= 5 if isJitter else 0)
+
+            # uncomment to save screen image
+            # savedPath = os.path.join(picdir, "saved_pic_name.jpg")
+            # if not os.path.exists(savedPath):
+            #     GImage.save(savedPath)
+            
 
             epd.display(epd.getbuffer(GImage))
             # epd.display_4Gray(epd.getbuffer_4Gray(GImage))

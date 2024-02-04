@@ -4,7 +4,8 @@
 - Raspberry Pi 3 and upwards
 - E-paper display Hat 2.7 inch - I use thee one from [waveshare]
 - Python 3.10 and up
-- Raspberry Pi OS (Could work with Ubuntu 23.04 upwards but not tested yet  
+- Raspberry Pi OS (Could work with Ubuntu 23.04 upwards but not tested yet
+
 
 ### Introduction 
 I have the epaper hat since 2020. But never got down to doing much with it.  
@@ -15,6 +16,8 @@ So I decided to display some of the system statistics on the epaper hat using py
 |Fan on | Inddicate fan on status and also the RPM (*only for Pi 5*)|
 |Memory| Available, used and percentage utilised|
 |hostname and IP| Hostname assigned and IP assigned on the local WIFI network|
+
+![Screen Statistics](./pic/saved_pic_name.jpg)  
 
 ### How to use - Installation
 
