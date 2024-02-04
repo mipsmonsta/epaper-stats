@@ -10,14 +10,19 @@
 ### Introduction 
 I have the epaper hat since 2020. But never got down to doing much with it.  
 So I decided to display some of the system statistics on the epaper hat using python.
+
+![Screen Statistics](./pic/saved_pic_name.jpg)  
+
+
 |Supported statistics|Remarks|
 | -------------------| ------|
 |Temp|Reading from Temperature sensor of the Pi|
 |Fan on | Inddicate fan on status and also the RPM (*only for Pi 5*)|
 |Memory| Available, used and percentage utilised|
 |hostname and IP| Hostname assigned and IP assigned on the local WIFI network|
+----
 
-![Screen Statistics](./pic/saved_pic_name.jpg)  
+
 
 ### How to use - Installation
 
