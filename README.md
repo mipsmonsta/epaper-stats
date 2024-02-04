@@ -10,6 +10,7 @@
 ### Introduction 
 I have the epaper hat since 2020. But never got down to doing much with it.  
 So I decided to display some of the system statistics on the epaper hat using python.
+See if it's useful to you. If you have Pi 5 with fan, the software will also tell you when the fan is on.  
 
 ![Screen Statistics](./pic/saved_pic_name.jpg)  
 
