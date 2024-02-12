@@ -5,6 +5,34 @@ import subprocess
 from datetime import datetime
 import logging
 import re
+import json
+
+class DisplayConfig:
+    def __init__(self):
+        self.logger = logging.getLogger("Display_config")
+        CONFIG_FILE_NAME = "config.json"
+        PATHDIR = os.getcwd()
+        filePath = os.path.join(PATHDIR, CONFIG_FILE_NAME)
+    
+        self.config = {}
+        if os.path.exists(filePath):
+            try:
+                with open(filePath, "r") as f:
+                    self.config = json.load(f)
+                    self.logger.debug(self.config)
+            except:
+                pass
+
+    def isRotateUpsideDown(self) -> bool:
+        if "upsidedown" not in self.config:
+            return False
+        
+        if self.config["upsidedown"] == True:
+            return True
+        
+        return False
+        
+
 
 class ImageUtils:
     @staticmethod

@@ -97,6 +97,10 @@ def main():
             # if not os.path.exists(savedPath):
             #     GImage.save(savedPath)
             
+            # apply config processing of display image
+            if config.isRotateUpsideDown():
+                logging.info("Config says rotate upside down")
+                GImage = GImage.rotate(180)
 
             epd.display(epd.getbuffer(GImage))
             # epd.display_4Gray(epd.getbuffer_4Gray(GImage))
@@ -120,8 +124,14 @@ def main():
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     epd = epd2in7.EPD()
+    # load config.json for display configuration
+    config = utility.DisplayConfig()
     endPath = os.path.join(picdir, 'e_paper_endscreen.png')
     imageEnd = Image.open(endPath)
+    if config.isRotateUpsideDown():
+        imageEnd = imageEnd.rotate(180)
+
+
     # register for signals for gracefull shutdown
     signal.signal(signal.SIGTERM , signal_handler)
     signal.signal(signal.SIGINT , signal_handler)
