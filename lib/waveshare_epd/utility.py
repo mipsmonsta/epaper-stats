@@ -11,8 +11,8 @@ class DisplayConfig:
     def __init__(self):
         self.logger = logging.getLogger("Display_config")
         CONFIG_FILE_NAME = "config.json"
-        PATHDIR = os.getcwd()
-        filePath = os.path.join(PATHDIR, CONFIG_FILE_NAME)
+        PATHDIR = os.path.dirname(os.path.realpath(__file__))
+        filePath = os.path.join(PATHDIR, "../../",CONFIG_FILE_NAME)
     
         self.config = {}
         if os.path.exists(filePath):
