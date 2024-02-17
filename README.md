@@ -49,7 +49,7 @@ sudo reboot now
 ```
 When restarted and with the e-paper hat installed, **violia**. *If not*, have your enabled SPI using [raspi-config]? 
 
-### Rotate screen 180 degrees 
+### Rotate screen 180 degrees - Through Configuration or manually by Button Key1 of HAT
 
 Currently, the display is portrait. But if your orientation of the epaper is upside down, you could rotate the image displayed 180 degrees.  
 
@@ -64,6 +64,8 @@ Tweak the json to
 ```
 
 or `false` to turn off.
+
+**Alternatively you can press Key 1** of the epaper hat to toggle the orientation of the display from upright to upside down and vice versa.
 
 # Code - Explained
 

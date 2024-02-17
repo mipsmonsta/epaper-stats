@@ -31,8 +31,15 @@ class DisplayConfig:
             return True
         
         return False
-        
+    
+    def toggleUpsideDown(self):
+        if "upsidedown" not in self.config:
+            self.config["upsidedown"] == True
 
+        else:
+            self.config["upsidedown"] = not self.config["upsidedown"]
+        
+        self.logger.info(f"Toggled Display upside down: {self.config['upsidedown']}")
 
 class ImageUtils:
     @staticmethod

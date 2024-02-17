@@ -12,7 +12,9 @@ import time
 from PIL import Image,ImageDraw,ImageFont, ImageOps
 import traceback
 import signal
+from gpiozero import Button
 
+KEY1PIN, KEY2PIN, KEY3PIN, KEY4PIN = 5, 6, 13, 19
 
 def drawForegroundStats(baseImage: Image, jitter:int = 0) -> Image:
 
@@ -118,18 +120,29 @@ def main():
         traceback.print_exc()
         logging.info(e)
 
+# key functions
 
-
+# callback for Key1 button on e-paper display
+def handleKey1Press():
+    # change display to not upside down if upside down
+    # and vice versa
+    config.toggleUpsideDown()
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     epd = epd2in7.EPD()
+
+
     # load config.json for display configuration
     config = utility.DisplayConfig()
     endPath = os.path.join(picdir, 'e_paper_endscreen.png')
     imageEnd = Image.open(endPath)
     if config.isRotateUpsideDown():
         imageEnd = imageEnd.rotate(180)
+
+    # configure key buttons
+    btnKey1 = Button(KEY1PIN)
+    btnKey1.when_pressed = handleKey1Press
 
 
     # register for signals for gracefull shutdown
