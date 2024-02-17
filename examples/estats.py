@@ -141,7 +141,7 @@ if __name__ == "__main__":
         imageEnd = imageEnd.rotate(180)
 
     # configure key buttons
-    btnKey1 = Button(KEY1PIN)
+    btnKey1 = Button(KEY1PIN, bounce_time=0.2) # 200 microseconds ignore rapid change in input
     btnKey1.when_pressed = handleKey1Press
 
 
